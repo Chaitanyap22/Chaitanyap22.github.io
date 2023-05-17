@@ -107,6 +107,27 @@ const portfolioData = [
     },
 ];
 
+const projectData = [
+    {
+        imageLink: './src/img/portfolio/2.png',
+        title: 'Apariencia',
+        description: 'Apariencia (pronounced a·pa·rien·sia, which means color in french) is an easy to use, native colour picker for macOS. Apariencia makes it simple to quickly find colours onscreen, in the format you need, so you can get on with being a speedy, successful designer.',
+        dateCreated: 'November, 2022',
+        technologies: 'Xcode, SwiftUI',
+        role: 'Designer/Developer',
+        viewLink: 'src/downloads/Apariencia.dmg'
+    },
+    {
+        imageLink: './src/img/portfolio/3.png',
+        title: 'AutoThemer',
+        description: 'Annoyed by dark theme in outdoors and light theme in indoors, even the way i have to keep it switching manually. So i made an app for it. Auto themer uses light sensor that\'s present in Apple\'s Mac displays and switches the theme based on light intensity and delay set by user. It starts as background app so it don\'t annoys you. Even it can be set to start at login so once set at beginning, you don\'t have to look back into it. Go ahead, try it yourself.',
+        dateCreated: 'December, 2022',
+        technologies: 'Xcode, SwiftUI',
+        role: 'Designer/Developer',
+        viewLink: 'src/downloads/AutoThemer.dmg'
+    },
+];
+
 // Function to generate the HTML for a Bootstrap card
 function generateCardHTML(imageLink, title, description, dateCreated, technologies, role, viewLink) {
     return `
@@ -135,10 +156,45 @@ function generateCardHTML(imageLink, title, description, dateCreated, technologi
     `;
 }
 
+function generatedownloadableHTML(imageLink, title, description, dateCreated, technologies, role, viewLink) {
+    return`
+    <div class="col-md-4 mb-4">
+        <div class="portfolio-item">
+            <div class="portfolio-item-thumbnail">
+            <img src="${imageLink}" alt="${title}">
+            </div>
+            <h3 class="portfolio-item-title">${title}</h3>
+            <button type="button" class="btn view-project-btn">View Project</button>
+            <div class="portfolio-item-details">
+                <div class="description">
+                    <p>${description}</p>
+                </div>
+                <div class="general-info">
+                    <ul>
+                        <li>Date Created - <span>${dateCreated}</span></li>
+                        <li>Technologies used - <span>${technologies}</span></li>
+                        <li>Role - <span>${role}</span></li>
+                        <li>Download App - <span>
+                            <a class="face-button" href="${viewLink}" download>
+                                <span class="icon fa fa-cloud"></span>
+                                Download
+                            </a>
+                        </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+}
+
 // Map the data array and generate HTML for each card
+const downloadableHTML = projectData.map((item) => generatedownloadableHTML(item.imageLink, item.title, item.description, item.dateCreated, item.technologies, item.role, item.viewLink));
 const cardHTML = portfolioData.map((item) => generateCardHTML(item.imageLink, item.title, item.description, item.dateCreated, item.technologies, item.role, item.viewLink));
 
 // Append the card HTML to the card container
+$('#downloadable-projects').append(downloadableHTML);
 $('#card-container').append(cardHTML);
 
 /****************************************************************
