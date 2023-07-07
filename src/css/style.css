@@ -218,6 +218,49 @@ button {
     color: var(--white);
 }
 
+.nav-btn {
+    
+    background-color: var(--rgba-white-alpha-25);
+    border: 1px solid var(--rgba-white-alpha-40);
+    padding: 10px 10px;
+    margin: auto;
+    height: 45px;
+    display: inline-block;
+    border-radius: 30px;
+    color: var(--main-color);
+    font-weight: 500;
+    text-transform: capitalize;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    overflow: hidden;
+    vertical-align: middle;
+    transition: color 0.3s ease;
+}
+
+.nav-btn::before {
+    content: '';
+    position: absolute;
+    Left: 0;
+    top: 0;
+    height: 100%;
+    width: 0%;
+    background-color: var(--main-color);
+    z-index: -1;
+    border-radius: 30px;
+    transition: width 0.3s ease;
+}
+
+.nav-btn:hover::before {
+    width: 100%;
+}
+
+.nav-btn:hover {
+    color: var(--white);
+}
+
 .face-button {
     display: inline-block;
     border: 1px solid #b0b0e7;
